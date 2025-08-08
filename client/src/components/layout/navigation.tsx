@@ -1,7 +1,7 @@
 import { useState } from "react";
 import logoPath from "@assets/509248693_18059664560223974_3939236321042090081_n_1754404764662_1754647863336.jpg";
 import { Link, useLocation } from "wouter";
-import { ShoppingCart, Menu, X, Crown, User } from "lucide-react";
+import { ShoppingCart, Menu, X, User } from "lucide-react";
 import { GlassCard } from "@/components/ui/glass-card";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/lib/auth";

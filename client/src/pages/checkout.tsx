@@ -10,11 +10,9 @@ import { apiRequest } from "@/lib/queryClient";
 import { Link } from "wouter";
 import { ArrowLeft, ShoppingBag, User } from "lucide-react";
 
-if (!import.meta.env.VITE_STRIPE_PUBLIC_KEY) {
-  throw new Error('Missing required Stripe key: VITE_STRIPE_PUBLIC_KEY');
-}
-
-const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
+const stripePromise = import.meta.env.VITE_STRIPE_PUBLIC_KEY ? 
+  loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY) : 
+  Promise.resolve(null);
 
 function CheckoutForm() {
   const stripe = useStripe();
@@ -28,6 +26,11 @@ function CheckoutForm() {
     e.preventDefault();
 
     if (!stripe || !elements || !user) {
+      toast({
+        title: "Payment not configured",
+        description: "Payment processing is not set up yet. Please contact support.",
+        variant: "destructive",
+      });
       return;
     }
 
@@ -231,9 +234,16 @@ export default function Checkout() {
           <div>
             <GlassCard variant="dark" className="p-6">
               <h2 className="text-xl font-semibold mb-6 text-white">Payment Details</h2>
-              <Elements stripe={stripePromise} options={{ clientSecret }}>
-                <CheckoutForm />
-              </Elements>
+              {import.meta.env.VITE_STRIPE_PUBLIC_KEY ? (
+                <Elements stripe={stripePromise} options={{ clientSecret }}>
+                  <CheckoutForm />
+                </Elements>
+              ) : (
+                <div className="text-center py-8">
+                  <p className="text-gray-300 mb-4">Payment processing is not configured yet.</p>
+                  <p className="text-sm text-gray-400">Please contact us to complete your order.</p>
+                </div>
+              )}
             </GlassCard>
           </div>
         </div>
