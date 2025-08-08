@@ -10,15 +10,15 @@
   "start_url": "/",
   "icons": [
     {
-      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23D2461A'/%3E%3Ctext x='50' y='60' text-anchor='middle' font-size='40' fill='white'%3E👑%3C/text%3E%3C/svg%3E",
+      "src": "/attached_assets/509248693_18059664560223974_3939236321042090081_n_1754404764662_1754647863336.jpg",
       "sizes": "192x192",
-      "type": "image/svg+xml",
+      "type": "image/jpeg",
       "purpose": "any maskable"
     },
     {
-      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23D2461A'/%3E%3Ctext x='50' y='60' text-anchor='middle' font-size='40' fill='white'%3E👑%3C/text%3E%3C/svg%3E",
+      "src": "/attached_assets/509248693_18059664560223974_3939236321042090081_n_1754404764662_1754647863336.jpg",
       "sizes": "512x512",
-      "type": "image/svg+xml",
+      "type": "image/jpeg",
       "purpose": "any maskable"
     }
   ],
@@ -39,9 +39,9 @@
       "url": "/menu",
       "icons": [
         {
-          "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23D2461A'/%3E%3Ctext x='50' y='60' text-anchor='middle' font-size='30' fill='white'%3E🍞%3C/text%3E%3C/svg%3E",
+          "src": "/attached_assets/509248693_18059664560223974_3939236321042090081_n_1754404764662_1754647863336.jpg",
           "sizes": "96x96",
-          "type": "image/svg+xml"
+          "type": "image/jpeg"
         }
       ]
     },
@@ -52,9 +52,9 @@
       "url": "/reservations",
       "icons": [
         {
-          "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23D2461A'/%3E%3Ctext x='50' y='60' text-anchor='middle' font-size='30' fill='white'%3E📅%3C/text%3E%3C/svg%3E",
+          "src": "/attached_assets/509248693_18059664560223974_3939236321042090081_n_1754404764662_1754647863336.jpg",
           "sizes": "96x96",
-          "type": "image/svg+xml"
+          "type": "image/jpeg"
         }
       ]
     }
