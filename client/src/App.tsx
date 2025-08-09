@@ -23,7 +23,7 @@ function Router() {
 
   return (
     <div className="mobile-app bg-white text-gray-900">
-      <div className="mobile-content px-4 pt-4">
+      <div className="mobile-content px-4 pt-4 pb-6">
         <Switch>
           <Route path="/" component={Home} />
           <Route path="/menu" component={Menu} />

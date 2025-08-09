@@ -9,6 +9,8 @@ Design preferences:
 - White background with detached components
 - iOS-style floating navigation with rounded corners (24px border-radius)
 - Components should have proper spacing from screen edges
+- Navigation should be detached from edges with 20px margins
+- Floating navigation bar should not collide with content
 
 # System Architecture
 

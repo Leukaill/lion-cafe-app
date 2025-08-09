@@ -47,7 +47,7 @@ export default function Home() {
   };
 
   return (
-    <div className="pb-4">
+    <div className="pb-8">
       {/* Mobile Hero Section */}
       <section className="relative h-[60vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
@@ -81,7 +81,7 @@ export default function Home() {
       </section>
 
       {/* Quick Actions Grid */}
-      <section className="px-4 py-6">
+      <section className="px-0 py-6">
         <div className="grid grid-cols-2 gap-4 mb-6">
           <Link href="/menu">
             <div className="glass-morphism-dark p-4 rounded-2xl text-center touch-feedback">
@@ -157,7 +157,7 @@ export default function Home() {
       </section>
 
       {/* Featured Items */}
-      <section className="px-4 py-6">
+      <section className="px-0 py-6">
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-xl font-bold text-gray-900">Popular Items</h2>
           <Link href="/menu">

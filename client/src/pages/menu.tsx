@@ -48,9 +48,9 @@ export default function Menu() {
     <div>
       <MobileHeader title="Menu" showMenu showNotifications />
       
-      <div className="px-4 pb-4">
+      <div className="px-0 pb-8">
         {/* Search Bar */}
-        <div className="sticky top-16 z-30 py-4 bg-white">
+        <div className="sticky top-16 z-30 py-4 bg-white px-4">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
             <input
@@ -62,7 +62,7 @@ export default function Menu() {
         </div>
 
         {/* Category Pills */}
-        <div className="flex gap-3 overflow-x-auto pb-4 scrollbar-hide">
+        <div className="flex gap-3 overflow-x-auto pb-4 scrollbar-hide px-4">
           {categories.map((category) => (
             <button
               key={category.id}
