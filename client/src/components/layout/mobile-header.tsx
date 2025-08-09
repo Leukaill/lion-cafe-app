@@ -92,18 +92,22 @@ export function MobileHeader({
       </div>
       
       {/* Expandable Search Bar */}
-      {isSearchExpanded && showSearch && (
+      <div className={`search-dropdown overflow-hidden transition-all duration-300 ease-out ${
+        isSearchExpanded && showSearch 
+          ? 'max-h-20 opacity-100' 
+          : 'max-h-0 opacity-0'
+      }`}>
         <div className="px-4 pb-3 border-t border-gray-100 bg-white/95 backdrop-blur-lg">
           <input
             type="text"
             placeholder="Search menu..."
             value={searchQuery}
             onChange={(e) => handleSearchChange(e.target.value)}
-            className="w-full px-4 py-3 bg-gray-100 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-brand-orange focus:border-transparent"
-            autoFocus
+            className="w-full px-4 py-3 bg-gray-100 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-brand-orange focus:border-transparent transition-all duration-200"
+            autoFocus={isSearchExpanded}
           />
         </div>
-      )}
+      </div>
     </header>
   );
 }
