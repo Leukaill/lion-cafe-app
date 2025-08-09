@@ -5,6 +5,10 @@ Lion's Café & Bakery is a full-stack Progressive Web Application (PWA) for an a
 # User Preferences
 
 Preferred communication style: Simple, everyday language.
+Design preferences: 
+- White background with detached components
+- iOS-style floating navigation with rounded corners (24px border-radius)
+- Components should have proper spacing from screen edges
 
 # System Architecture
 
