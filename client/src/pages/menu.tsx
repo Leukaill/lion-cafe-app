@@ -51,14 +51,10 @@ export default function Menu() {
       <div className="px-0 pb-8">
         {/* Search Bar */}
         <div className="sticky top-16 z-30 py-4 bg-white px-4">
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-            <input
-              type="text"
-              placeholder="Search menu..."
-              className="w-full bg-white border border-gray-300 rounded-xl pl-10 pr-4 py-3 text-gray-900 placeholder-gray-500 focus:border-brand-orange focus:outline-none shadow-sm"
-            />
-          </div>
+          <button className="w-full flex items-center px-4 py-3 bg-gray-100 border border-gray-200 rounded-xl text-left text-gray-500 hover:bg-gray-50 transition-colors">
+            <Search className="w-5 h-5 mr-3" />
+            <span>Search menu...</span>
+          </button>
         </div>
 
         {/* Category Pills */}

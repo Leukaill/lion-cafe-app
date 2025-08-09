@@ -75,97 +75,106 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center">
-      <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={onClose} />
-      <div className="relative p-4 w-full max-w-md">
-        <GlassCard variant="dark" className="p-8">
-          <button
-            onClick={onClose}
-            className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors"
-          >
-            <X className="w-5 h-5" />
-          </button>
-          
-          <div className="text-center mb-8">
-            <div className="w-16 h-16 mx-auto mb-4">
-              <img 
-                src={logoPath} 
-                alt="Lion's Café & Bakery Logo" 
-                className="w-full h-full rounded-full object-cover"
-              />
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
+      <div className="w-full max-w-md">
+        <GlassCard className="p-6 space-y-6">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-3">
+              <div className="w-10 h-10 rounded-full overflow-hidden">
+                <img 
+                  src={logoPath} 
+                  alt="Lion's Café" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <h2 className="text-xl font-semibold text-gray-900">
+                {isSignUp ? "Create Account" : "Welcome Back"}
+              </h2>
             </div>
-            <h3 className="text-2xl font-bold mb-2 text-white">
-              {isSignUp ? "Join Lion's Café" : "Welcome Back"}
-            </h3>
-            <p className="text-gray-300">
-              {isSignUp ? "Create your account" : "Sign in to your account"}
-            </p>
+            <button 
+              onClick={onClose}
+              className="p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
+            >
+              <X className="w-5 h-5" />
+            </button>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-4 mb-6">
+          <form onSubmit={handleSubmit} className="space-y-4">
             {isSignUp && (
-              <Input
-                type="text"
-                placeholder="Username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                required
-                className="glass-morphism bg-transparent border-white/20 text-white placeholder-gray-400"
-              />
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Username
+                </label>
+                <Input
+                  type="text"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  placeholder="Your username"
+                  required
+                />
+              </div>
             )}
-            <Input
-              type="email"
-              placeholder="Email address"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              className="glass-morphism bg-transparent border-white/20 text-white placeholder-gray-400"
-            />
-            <Input
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              className="glass-morphism bg-transparent border-white/20 text-white placeholder-gray-400"
-            />
             
-            <Button
-              type="submit"
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Email
+              </label>
+              <Input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="your@email.com"
+                required
+              />
+            </div>
+            
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Password
+              </label>
+              <Input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Your password"
+                required
+              />
+            </div>
+
+            <Button 
+              type="submit" 
+              className="w-full bg-brand-orange hover:bg-orange-600"
               disabled={loading}
-              className="w-full bg-brand-orange hover:bg-orange-600 text-white"
             >
-              {loading ? "Please wait..." : (isSignUp ? "Sign Up" : "Sign In")}
+              {loading ? "Loading..." : (isSignUp ? "Create Account" : "Sign In")}
             </Button>
           </form>
 
-          <div className="relative mb-6">
+          <div className="relative">
             <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-white/10" />
+              <div className="w-full border-t border-gray-200" />
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="px-2 bg-transparent text-gray-400">Or continue with</span>
+              <span className="px-2 bg-white text-gray-500">or</span>
             </div>
           </div>
 
-          <Button
+          <Button 
             onClick={handleGoogleSignIn}
-            disabled={loading}
             variant="outline"
-            className="w-full glass-morphism border-white/20 text-white hover:bg-white/10"
+            className="w-full"
+            disabled={loading}
           >
-            Sign in with Google
+            Continue with Google
           </Button>
 
-          <div className="text-center mt-6">
-            <span className="text-gray-400">
-              {isSignUp ? "Already have an account?" : "Don't have an account?"}
-            </span>
+          <div className="text-center">
             <button
+              type="button"
               onClick={() => setIsSignUp(!isSignUp)}
-              className="text-brand-orange hover:underline ml-1"
+              className="text-sm text-brand-orange hover:text-orange-600 font-medium"
             >
-              {isSignUp ? "Sign in" : "Sign up"}
+              {isSignUp ? "Already have an account? Sign in" : "Need an account? Sign up"}
             </button>
           </div>
         </GlassCard>

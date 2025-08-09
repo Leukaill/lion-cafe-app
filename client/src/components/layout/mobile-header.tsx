@@ -18,13 +18,13 @@ export function MobileHeader({
   onMenuClick 
 }: MobileHeaderProps) {
   return (
-    <header className="sticky top-0 z-40 bg-black/90 backdrop-blur-lg border-b border-white/10">
+    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-lg border-b border-gray-200">
       <div className="flex items-center justify-between px-4 py-3">
         <div className="flex items-center space-x-3">
           {showBack && (
             <button 
               onClick={() => window.history.back()}
-              className="p-2 -ml-2 text-white hover:bg-white/10 rounded-lg touch-feedback"
+              className="p-2 -ml-2 text-gray-900 hover:bg-gray-100 rounded-lg touch-feedback"
             >
               <ArrowLeft className="w-6 h-6" />
             </button>
@@ -41,7 +41,7 @@ export function MobileHeader({
           )}
           
           <div>
-            <h1 className="text-lg font-semibold text-white">
+            <h1 className="text-lg font-semibold text-gray-900">
               {title || "Lion's Café"}
             </h1>
           </div>
@@ -53,7 +53,7 @@ export function MobileHeader({
           {showMenu && (
             <button 
               onClick={onMenuClick}
-              className="p-2 text-white hover:bg-white/10 rounded-lg touch-feedback"
+              className="p-2 text-gray-900 hover:bg-gray-100 rounded-lg touch-feedback"
             >
               <MoreVertical className="w-6 h-6" />
             </button>

@@ -71,14 +71,25 @@ export default function Reservations() {
     <div>
       <MobileHeader title="Reservations" showMenu showNotifications />
       
-      <div className="px-4 pb-6">
+      <div className="px-4 pb-8">
         {/* Header Info */}
-        <div className="glass-morphism-dark p-6 rounded-2xl mb-6">
-          <h2 className="text-2xl font-bold text-white mb-2">Book Your Table</h2>
-          <p className="text-gray-300 text-sm leading-relaxed">
-            Reserve a table at Lion's Café & Bakery for an unforgettable dining experience. 
-            We'll confirm your reservation within 15 minutes.
-          </p>
+        <div className="text-center py-6">
+          <h1 className="text-2xl font-bold text-gray-900 mb-2">Reserve Your Table</h1>
+          <p className="text-gray-600">Book your perfect dining experience with us</p>
+        </div>
+        <div className="glass-morphism-dark rounded-2xl overflow-hidden mb-6">
+          <div className="relative h-32">
+            <img 
+              src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400" 
+              alt="Beautiful restaurant interior" 
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+            <div className="absolute bottom-0 left-0 right-0 p-4">
+              <h2 className="text-xl font-bold text-white mb-1">Reserve Your Table</h2>
+              <p className="text-sm text-gray-200">Book your perfect dining experience with us</p>
+            </div>
+          </div>
         </div>
 
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -86,16 +97,16 @@ export default function Reservations() {
           <div className="glass-morphism-dark p-4 rounded-2xl">
             <div className="flex items-center mb-3">
               <Calendar className="w-5 h-5 text-brand-orange mr-2" />
-              <label className="text-white font-medium">Select Date</label>
+              <label className="text-gray-900 font-medium">Select Date</label>
             </div>
             <input
               type="date"
               {...form.register("date")}
               min={new Date().toISOString().split('T')[0]}
-              className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:border-brand-orange focus:outline-none"
+              className="w-full bg-white border border-gray-300 rounded-lg px-4 py-3 text-gray-900 focus:border-brand-orange focus:outline-none"
             />
             {form.formState.errors.date && (
-              <p className="text-red-400 text-sm mt-2">{form.formState.errors.date.message}</p>
+              <p className="text-red-500 text-sm mt-2">{form.formState.errors.date.message}</p>
             )}
           </div>
 
@@ -103,7 +114,7 @@ export default function Reservations() {
           <div className="glass-morphism-dark p-4 rounded-2xl">
             <div className="flex items-center mb-3">
               <Clock className="w-5 h-5 text-brand-orange mr-2" />
-              <label className="text-white font-medium">Select Time</label>
+              <label className="text-gray-900 font-medium">Select Time</label>
             </div>
             <div className="grid grid-cols-3 gap-2 max-h-40 overflow-y-auto">
               {timeSlots.map((time) => (
@@ -114,7 +125,7 @@ export default function Reservations() {
                   className={`p-2 text-sm rounded-lg transition-all touch-feedback ${
                     form.watch("time") === time
                       ? "bg-brand-orange text-white"
-                      : "bg-gray-800 text-gray-300 hover:bg-gray-700"
+                      : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                   }`}
                 >
                   {time}
@@ -122,7 +133,7 @@ export default function Reservations() {
               ))}
             </div>
             {form.formState.errors.time && (
-              <p className="text-red-400 text-sm mt-2">{form.formState.errors.time.message}</p>
+              <p className="text-red-500 text-sm mt-2">{form.formState.errors.time.message}</p>
             )}
           </div>
 
@@ -130,7 +141,7 @@ export default function Reservations() {
           <div className="glass-morphism-dark p-4 rounded-2xl">
             <div className="flex items-center mb-3">
               <Users className="w-5 h-5 text-brand-orange mr-2" />
-              <label className="text-white font-medium">Party Size</label>
+              <label className="text-gray-900 font-medium">Party Size</label>
             </div>
             <div className="grid grid-cols-6 gap-2">
               {partySizes.map((size) => (
@@ -141,7 +152,7 @@ export default function Reservations() {
                   className={`aspect-square rounded-lg flex items-center justify-center font-semibold transition-all touch-feedback ${
                     form.watch("partySize") === size
                       ? "bg-brand-orange text-white"
-                      : "bg-gray-800 text-gray-300 hover:bg-gray-700"
+                      : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                   }`}
                 >
                   {size}
@@ -157,16 +168,16 @@ export default function Reservations() {
           <div className="glass-morphism-dark p-4 rounded-2xl">
             <div className="flex items-center mb-3">
               <Phone className="w-5 h-5 text-brand-orange mr-2" />
-              <label className="text-white font-medium">Contact Phone</label>
+              <label className="text-gray-900 font-medium">Contact Phone</label>
             </div>
             <input
               type="tel"
               placeholder="(555) 123-4567"
               {...form.register("contactPhone")}
-              className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:border-brand-orange focus:outline-none"
+              className="w-full bg-white border border-gray-300 rounded-lg px-4 py-3 text-gray-900 placeholder-gray-500 focus:border-brand-orange focus:outline-none"
             />
             {form.formState.errors.contactPhone && (
-              <p className="text-red-400 text-sm mt-2">{form.formState.errors.contactPhone.message}</p>
+              <p className="text-red-500 text-sm mt-2">{form.formState.errors.contactPhone.message}</p>
             )}
           </div>
 
@@ -174,13 +185,13 @@ export default function Reservations() {
           <div className="glass-morphism-dark p-4 rounded-2xl">
             <div className="flex items-center mb-3">
               <MessageSquare className="w-5 h-5 text-brand-orange mr-2" />
-              <label className="text-white font-medium">Special Requests (Optional)</label>
+              <label className="text-gray-900 font-medium">Special Requests (Optional)</label>
             </div>
             <textarea
               placeholder="Dietary restrictions, special occasion, accessibility needs..."
               rows={3}
               {...form.register("specialRequests")}
-              className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:border-brand-orange focus:outline-none resize-none"
+              className="w-full bg-white border border-gray-300 rounded-lg px-4 py-3 text-gray-900 placeholder-gray-500 focus:border-brand-orange focus:outline-none resize-none"
             />
           </div>
 
@@ -203,8 +214,8 @@ export default function Reservations() {
 
         {/* Additional Info */}
         <div className="mt-8 glass-morphism-dark p-4 rounded-2xl">
-          <h3 className="text-white font-semibold mb-2">Reservation Policy</h3>
-          <ul className="text-gray-300 text-sm space-y-1">
+          <h3 className="text-gray-900 font-semibold mb-2">Reservation Policy</h3>
+          <ul className="text-gray-600 text-sm space-y-1">
             <li>• Reservations held for 15 minutes past scheduled time</li>
             <li>• Parties larger than 8 may require advance notice</li>
             <li>• Cancellations accepted up to 2 hours before reservation</li>

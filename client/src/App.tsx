@@ -30,14 +30,18 @@ function Router() {
           <Route path="/reservations" component={Reservations} />
           <Route path="/checkout" component={Checkout} />
           <Route path="/story" component={Story} />
-          <Route path="/auth" component={() => {
-            setIsAuthModalOpen(true);
-            return <Home />;
-          }} />
-          <Route path="/cart" component={() => {
-            setIsCartOpen(true);
-            return <Home />;
-          }} />
+          <Route path="/auth">
+            {() => {
+              setIsAuthModalOpen(true);
+              return <Home />;
+            }}
+          </Route>
+          <Route path="/cart">
+            {() => {
+              setIsCartOpen(true);
+              return <Home />;
+            }}
+          </Route>
           <Route component={NotFound} />
         </Switch>
       </div>

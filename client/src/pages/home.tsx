@@ -12,6 +12,26 @@ import { useToast } from "@/hooks/use-toast";
 
 export default function Home() {
   const { toast } = useToast();
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+
+  const announcements = [
+    {
+      title: "Today's Special",
+      description: "Fresh croissants and artisan coffee - 20% off until 2 PM!",
+      image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400"
+    },
+    {
+      title: "Extended Hours",
+      description: "Now open 7 AM - 9 PM daily. More time to enjoy your favorites!",
+      image: "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400"
+    },
+    {
+      title: "New Coffee Arrivals",
+      description: "Ethiopian single-origin beans now available. Try our signature blend!",
+      image: "https://images.unsplash.com/photo-1447933601403-0c6688de566e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400"
+    }
+  ];
 
   const { data: featuredItems, isLoading } = useQuery({
     queryKey: ['/api/menu'],
@@ -21,7 +41,14 @@ export default function Home() {
   useEffect(() => {
     // Initialize push notifications
     pushNotificationManager.initialize();
-  }, []);
+    
+    // Auto-advance carousel
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % announcements.length);
+    }, 5000); // Change slide every 5 seconds
+    
+    return () => clearInterval(interval);
+  }, [announcements.length]);
 
   const handleNotificationSetup = async () => {
     const permission = await pushNotificationManager.requestPermission();
@@ -48,35 +75,89 @@ export default function Home() {
 
   return (
     <div className="pb-8">
-      {/* Mobile Hero Section */}
-      <section className="relative h-[60vh] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <img
-            src="https://images.unsplash.com/photo-1509440159596-0249088772ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080"
-            alt="Artisanal breads and pastries display"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/70 to-black/50" />
-        </div>
-
-        <div className="relative z-10 text-center px-6">
-          <div className="w-16 h-16 mx-auto mb-4">
+      {/* Beautiful Announcements Section */}
+      <section className="px-4 pt-6 pb-8">
+        <div className="text-center mb-6">
+          <div className="w-20 h-20 mx-auto mb-4 bg-gradient-to-br from-brand-orange to-orange-600 rounded-2xl flex items-center justify-center shadow-lg">
             <img 
               src={logoPath} 
               alt="Lion's Café & Bakery Logo" 
-              className="w-full h-full rounded-full object-cover shadow-lg"
+              className="w-12 h-12 rounded-xl object-cover"
             />
           </div>
           
-          <h1 className="text-2xl font-bold mb-2 text-white">
+          <h1 className="text-3xl font-bold mb-2 text-gray-900">
             Lion's Café & Bakery
           </h1>
-          <p className="text-lg text-brand-orange font-medium mb-4">
+          <p className="text-lg text-brand-orange font-medium mb-6">
             Pride of Peace of Mind
           </p>
-          <p className="text-sm text-gray-200 leading-relaxed max-w-sm mx-auto">
-            Premium artisan craftsmanship meets coffee culture
-          </p>
+        </div>
+
+        {/* Announcements Carousel */}
+        <div className="relative">
+          <div 
+            className="carousel-container overflow-hidden rounded-2xl touch-pan-x"
+            onTouchStart={(e) => {
+              const touch = e.touches[0];
+              setTouchStart(touch.clientX);
+            }}
+            onTouchEnd={(e) => {
+              if (!touchStart) return;
+              const touchEnd = e.changedTouches[0].clientX;
+              const diff = touchStart - touchEnd;
+              
+              if (Math.abs(diff) > 50) { // Minimum swipe distance
+                if (diff > 0) {
+                  // Swipe left - next slide
+                  setCurrentSlide((prev) => (prev + 1) % announcements.length);
+                } else {
+                  // Swipe right - previous slide
+                  setCurrentSlide((prev) => (prev - 1 + announcements.length) % announcements.length);
+                }
+              }
+              setTouchStart(null);
+            }}
+          >
+            <div 
+              className="carousel-track flex transition-transform duration-500 ease-out"
+              style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+            >
+              {announcements.map((announcement, index) => (
+                <div key={index} className="carousel-slide w-full flex-shrink-0">
+                  <div className="glass-morphism-dark rounded-2xl overflow-hidden">
+                    <div className="relative h-48">
+                      <img 
+                        src={announcement.image} 
+                        alt={announcement.title} 
+                        className="w-full h-full object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+                      <div className="absolute bottom-0 left-0 right-0 p-6">
+                        <h3 className="font-bold text-white text-xl mb-2">{announcement.title}</h3>
+                        <p className="text-sm text-gray-200 leading-relaxed">{announcement.description}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          
+          {/* Carousel Navigation Dots */}
+          <div className="flex justify-center mt-6 space-x-2">
+            {announcements.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentSlide(index)}
+                className={`w-3 h-3 rounded-full transition-all duration-300 touch-feedback ${
+                  index === currentSlide 
+                    ? 'bg-brand-orange scale-110' 
+                    : 'bg-gray-300 hover:bg-gray-400'
+                }`}
+              />
+            ))}
+          </div>
         </div>
       </section>
 
