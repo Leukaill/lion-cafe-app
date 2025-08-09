@@ -222,7 +222,20 @@
 
   /* Search dropdown animation */
   .search-dropdown {
+    overflow: hidden;
     transform-origin: top;
+  }
+  
+  .search-collapsed {
+    height: 0;
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  
+  .search-expanded {
+    height: 80px;
+    opacity: 1;
+    transform: translateY(0);
   }
 
   .line-clamp-2 {

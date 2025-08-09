@@ -92,10 +92,10 @@ export function MobileHeader({
       </div>
       
       {/* Expandable Search Bar */}
-      <div className={`search-dropdown overflow-hidden transition-all duration-300 ease-out ${
+      <div className={`search-dropdown transition-all duration-300 ease-in-out ${
         isSearchExpanded && showSearch 
-          ? 'max-h-20 opacity-100' 
-          : 'max-h-0 opacity-0'
+          ? 'search-expanded' 
+          : 'search-collapsed'
       }`}>
         <div className="px-4 pb-3 border-t border-gray-100 bg-white/95 backdrop-blur-lg">
           <input
