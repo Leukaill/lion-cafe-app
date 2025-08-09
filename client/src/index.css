@@ -151,109 +151,20 @@
     flex: 1;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
-    padding-bottom: 140px; /* Space for dynamic island + margin */
+    padding-bottom: 120px; /* Space for floating bottom nav + margin */
   }
 
-  /* Dynamic Island Navigation */
-  .dynamic-island-nav {
+  .bottom-nav {
     position: fixed;
-    bottom: 40px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(0, 0, 0, 0.85);
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(20px);
-    border-radius: 40px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 24px;
     z-index: 50;
-    box-shadow: 
-      0 8px 32px rgba(0, 0, 0, 0.3),
-      0 0 0 1px rgba(255, 255, 255, 0.1),
-      inset 0 1px 0 rgba(255, 255, 255, 0.2);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    animation: dynamicIslandAppear 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .dynamic-island-nav:hover {
-    transform: translateX(-50%) scale(1.02);
-    box-shadow: 
-      0 12px 40px rgba(0, 0, 0, 0.4),
-      0 0 0 1px rgba(255, 255, 255, 0.15),
-      inset 0 1px 0 rgba(255, 255, 255, 0.25);
-  }
-
-  .dynamic-island-item {
-    width: 44px;
-    height: 44px;
-    border-radius: 22px;
-    margin: 0 2px;
-    backdrop-filter: blur(10px);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .dynamic-island-item:active {
-    transform: scale(0.9);
-  }
-
-  /* Dynamic Island Animations */
-  @keyframes dynamicIslandAppear {
-    0% {
-      opacity: 0;
-      transform: translateX(-50%) scale(0.8) translateY(20px);
-    }
-    60% {
-      opacity: 0.8;
-      transform: translateX(-50%) scale(1.05) translateY(-5px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateX(-50%) scale(1) translateY(0);
-    }
-  }
-
-  /* Ripple effect for touch feedback */
-  .dynamic-island-item::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.3);
-    transition: width 0.3s ease, height 0.3s ease;
-    transform: translate(-50%, -50%);
-    z-index: -1;
-  }
-
-  .dynamic-island-item:active::before {
-    width: 48px;
-    height: 48px;
-  }
-
-  /* Safe area adjustments for devices with real Dynamic Island */
-  @supports (top: env(safe-area-inset-top)) {
-    .dynamic-island-nav {
-      bottom: max(40px, env(safe-area-inset-bottom, 0px) + 20px);
-    }
-  }
-
-  /* Responsive adjustments */
-  @media (max-width: 374px) {
-    .dynamic-island-item {
-      width: 40px;
-      height: 40px;
-      border-radius: 20px;
-    }
-    .dynamic-island-nav {
-      bottom: 30px;
-    }
-  }
-
-  /* Larger screens */
-  @media (min-width: 768px) {
-    .dynamic-island-nav {
-      bottom: 60px;
-    }
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   }
 
   .page-enter {
