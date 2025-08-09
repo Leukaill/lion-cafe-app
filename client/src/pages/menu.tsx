@@ -60,7 +60,7 @@ export default function Menu() {
         onSearchChange={setSearchQuery}
       />
       
-      <div className="px-0 pb-8">
+      <div className="px-0 pb-24">
 
         {/* Category Pills */}
         <div className="flex gap-3 overflow-x-auto pb-4 scrollbar-hide px-4 pt-4">

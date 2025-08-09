@@ -71,7 +71,7 @@ export default function Reservations() {
     <div>
       <MobileHeader title="Reservations" showMenu showNotifications />
       
-      <div className="px-4 pb-8">
+      <div className="px-4 pb-24">
         {/* Header Info */}
         <div className="text-center py-6">
           <h1 className="text-2xl font-bold text-gray-900 mb-2">Reserve Your Table</h1>

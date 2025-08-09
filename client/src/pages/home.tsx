@@ -76,7 +76,7 @@ export default function Home() {
   };
 
   return (
-    <div className="pb-8">
+    <div className="pb-24">
       <MobileHeader 
         title="Lion's Café" 
         showNotifications 
