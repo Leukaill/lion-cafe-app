@@ -11,6 +11,8 @@ Design preferences:
 - Components should have proper spacing from screen edges
 - Navigation should be detached from edges with 20px margins
 - Floating navigation bar should not collide with content
+- Dynamic Island-style header design with dark rounded pill shape (28px border-radius)
+- Clean, modern UI with proper spacing and glassmorphism effects
 
 # System Architecture
 
