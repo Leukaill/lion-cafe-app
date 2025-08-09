@@ -17,16 +17,22 @@ const categories = [
 
 export default function Menu() {
   const [activeCategory, setActiveCategory] = useState("all");
+  const [searchQuery, setSearchQuery] = useState("");
   const { addItem } = useCart();
   const { toast } = useToast();
 
-  const { data: menuItems, isLoading } = useQuery({
-    queryKey: ['/api/menu', activeCategory === "all" ? undefined : activeCategory],
-    queryFn: ({ queryKey }) => {
-      const [, category] = queryKey;
-      const url = category ? `/api/menu?category=${category}` : '/api/menu';
-      return fetch(url).then(res => res.json()) as Promise<MenuItem[]>;
-    },
+  const { data: allMenuItems, isLoading } = useQuery({
+    queryKey: ['/api/menu'],
+    queryFn: () => fetch('/api/menu').then(res => res.json()) as Promise<MenuItem[]>,
+  });
+
+  // Filter items based on category and search query
+  const menuItems = allMenuItems?.filter(item => {
+    const matchesCategory = activeCategory === "all" || item.category === activeCategory;
+    const matchesSearch = !searchQuery || 
+      item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      item.description.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchesCategory && matchesSearch;
   });
 
   const handleAddToCart = (item: MenuItem) => {
@@ -46,19 +52,18 @@ export default function Menu() {
 
   return (
     <div>
-      <MobileHeader title="Menu" showMenu showNotifications />
+      <MobileHeader 
+        title="Menu" 
+        showMenu 
+        showNotifications 
+        showSearch 
+        onSearchChange={setSearchQuery}
+      />
       
       <div className="px-0 pb-8">
-        {/* Search Bar */}
-        <div className="sticky top-16 z-30 py-4 bg-white px-4">
-          <button className="w-full flex items-center px-4 py-3 bg-gray-100 border border-gray-200 rounded-xl text-left text-gray-500 hover:bg-gray-50 transition-colors">
-            <Search className="w-5 h-5 mr-3" />
-            <span>Search menu...</span>
-          </button>
-        </div>
 
         {/* Category Pills */}
-        <div className="flex gap-3 overflow-x-auto pb-4 scrollbar-hide px-4">
+        <div className="flex gap-3 overflow-x-auto pb-4 scrollbar-hide px-4 pt-4">
           {categories.map((category) => (
             <button
               key={category.id}
@@ -76,17 +81,17 @@ export default function Menu() {
 
         {/* Menu Items */}
         {isLoading ? (
-          <div className="space-y-4 mt-6">
+          <div className="space-y-4 mt-6 px-4">
             {[...Array(6)].map((_, i) => (
-              <div key={i} className="glass-morphism-dark p-4 rounded-2xl">
+              <div key={i} className="bg-white border border-gray-200 p-4 rounded-2xl shadow-sm">
                 <div className="animate-pulse flex space-x-4">
-                  <div className="bg-gray-700 h-20 w-20 rounded-xl flex-shrink-0" />
+                  <div className="bg-gray-200 h-20 w-20 rounded-xl flex-shrink-0" />
                   <div className="flex-1 space-y-3">
-                    <div className="bg-gray-700 h-4 rounded w-3/4" />
-                    <div className="bg-gray-700 h-3 rounded w-full" />
+                    <div className="bg-gray-200 h-4 rounded w-3/4" />
+                    <div className="bg-gray-200 h-3 rounded w-full" />
                     <div className="flex justify-between items-center">
-                      <div className="bg-gray-700 h-4 rounded w-1/4" />
-                      <div className="bg-gray-700 h-8 w-20 rounded" />
+                      <div className="bg-gray-200 h-4 rounded w-1/4" />
+                      <div className="bg-gray-200 h-8 w-20 rounded" />
                     </div>
                   </div>
                 </div>
@@ -94,7 +99,7 @@ export default function Menu() {
             ))}
           </div>
         ) : menuItems && menuItems.length > 0 ? (
-          <div className="space-y-4 mt-6">
+          <div className="space-y-4 mt-6 px-4">
             {menuItems.map((item) => (
               <MobileMenuItemCard 
                 key={item.id} 
@@ -121,9 +126,9 @@ function MobileMenuItemCard({
   onAddToCart: () => void;
 }) {
   return (
-    <div className="glass-morphism-dark p-4 rounded-2xl touch-feedback">
+    <div className="bg-white border border-gray-200 p-4 rounded-2xl shadow-sm touch-feedback hover:shadow-md transition-shadow">
       <div className="flex space-x-4">
-        <div className="w-20 h-20 bg-gray-700 rounded-xl flex-shrink-0 overflow-hidden">
+        <div className="w-20 h-20 bg-gray-100 rounded-xl flex-shrink-0 overflow-hidden">
           {item.imageUrl && (
             <img 
               src={item.imageUrl} 
@@ -134,12 +139,12 @@ function MobileMenuItemCard({
         </div>
         <div className="flex-1 min-w-0">
           <div className="flex justify-between items-start mb-2">
-            <h3 className="font-semibold text-white text-lg leading-tight">{item.name}</h3>
+            <h3 className="font-semibold text-gray-900 text-lg leading-tight">{item.name}</h3>
             <span className="text-brand-orange font-bold text-lg ml-2">
               ${parseFloat(item.price).toFixed(2)}
             </span>
           </div>
-          <p className="text-sm text-gray-400 line-clamp-2 mb-3">{item.description}</p>
+          <p className="text-sm text-gray-600 line-clamp-2 mb-3">{item.description}</p>
           
           {item.allergens && item.allergens.length > 0 && (
             <p className="text-xs text-gray-500 mb-3">
