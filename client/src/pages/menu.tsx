@@ -46,7 +46,7 @@ export default function Menu() {
 
   return (
     <div>
-      <MobileHeader title="Menu" showMenu />
+      <MobileHeader title="Menu" showMenu showNotifications />
       
       <div className="px-4 pb-4">
         {/* Search Bar */}

@@ -1,17 +1,20 @@
 import { ArrowLeft, MoreVertical } from "lucide-react";
 import logoPath from "@assets/509248693_18059664560223974_3939236321042090081_n_1754404764662_1754647863336.jpg";
+import { NotificationCenter } from "@/components/notifications/notification-center";
 
 interface MobileHeaderProps {
   title?: string;
   showBack?: boolean;
   showMenu?: boolean;
+  showNotifications?: boolean;
   onMenuClick?: () => void;
 }
 
 export function MobileHeader({ 
   title, 
   showBack = false, 
-  showMenu = false, 
+  showMenu = false,
+  showNotifications = true,
   onMenuClick 
 }: MobileHeaderProps) {
   return (
@@ -44,14 +47,18 @@ export function MobileHeader({
           </div>
         </div>
 
-        {showMenu && (
-          <button 
-            onClick={onMenuClick}
-            className="p-2 text-white hover:bg-white/10 rounded-lg touch-feedback"
-          >
-            <MoreVertical className="w-6 h-6" />
-          </button>
-        )}
+        <div className="flex items-center space-x-2">
+          {showNotifications && <NotificationCenter />}
+          
+          {showMenu && (
+            <button 
+              onClick={onMenuClick}
+              className="p-2 text-white hover:bg-white/10 rounded-lg touch-feedback"
+            >
+              <MoreVertical className="w-6 h-6" />
+            </button>
+          )}
+        </div>
       </div>
     </header>
   );

@@ -69,7 +69,7 @@ export default function Reservations() {
 
   return (
     <div>
-      <MobileHeader title="Reservations" showMenu />
+      <MobileHeader title="Reservations" showMenu showNotifications />
       
       <div className="px-4 pb-6">
         {/* Header Info */}

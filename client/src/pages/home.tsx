@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Utensils, Store, Calendar, Bell, User as UserIcon, ChevronRight } from "lucide-react";
 import { Link } from "wouter";
 import logoPath from "@assets/509248693_18059664560223974_3939236321042090081_n_1754404764662_1754647863336.jpg";
@@ -7,12 +7,44 @@ import { Button } from "@/components/ui/button";
 import { MenuItemCard } from "@/components/menu/menu-item";
 import { useQuery } from "@tanstack/react-query";
 import { MenuItem } from "@shared/schema";
+import { pushNotificationManager } from "@/lib/push-notifications";
+import { useToast } from "@/hooks/use-toast";
 
 export default function Home() {
+  const { toast } = useToast();
+
   const { data: featuredItems, isLoading } = useQuery({
     queryKey: ['/api/menu'],
     select: (data: MenuItem[]) => data.slice(0, 4), // Show first 4 items for mobile
   });
+
+  useEffect(() => {
+    // Initialize push notifications
+    pushNotificationManager.initialize();
+  }, []);
+
+  const handleNotificationSetup = async () => {
+    const permission = await pushNotificationManager.requestPermission();
+    
+    if (permission === 'granted') {
+      await pushNotificationManager.subscribeToPushNotifications();
+      toast({
+        title: "Notifications Enabled! 🎉",
+        description: "You'll now receive special offers and updates from Lion's Café.",
+      });
+      
+      // Send a test notification after 2 seconds
+      setTimeout(() => {
+        pushNotificationManager.simulateOfferNotification();
+      }, 2000);
+    } else {
+      toast({
+        title: "Notifications Disabled",
+        description: "You can enable them anytime in your browser settings.",
+        variant: "destructive",
+      });
+    }
+  };
 
   return (
     <div className="pb-4">
@@ -70,12 +102,27 @@ export default function Home() {
 
         {/* Additional Actions */}
         <div className="space-y-3">
-          <div className="glass-morphism-dark p-4 rounded-2xl flex items-center justify-between touch-feedback">
+          <div className="glass-morphism-dark p-4 rounded-2xl flex items-center justify-between touch-feedback" onClick={() => handleNotificationSetup()}>
             <div className="flex items-center space-x-3">
               <Bell className="w-6 h-6 text-brand-orange" />
               <div>
-                <h3 className="font-medium text-white">Notifications</h3>
-                <p className="text-xs text-gray-400">Get special offers</p>
+                <h3 className="font-medium text-white">Enable Notifications</h3>
+                <p className="text-xs text-gray-400">Get special offers & updates</p>
+              </div>
+            </div>
+            <ChevronRight className="w-5 h-5 text-gray-400" />
+          </div>
+
+          {/* Demo Notification Button */}
+          <div 
+            className="glass-morphism-dark p-4 rounded-2xl flex items-center justify-between touch-feedback" 
+            onClick={() => pushNotificationManager.simulateOrderNotification()}
+          >
+            <div className="flex items-center space-x-3">
+              <Bell className="w-6 h-6 text-blue-400" />
+              <div>
+                <h3 className="font-medium text-white">Demo Notification</h3>
+                <p className="text-xs text-gray-400">Test push notifications</p>
               </div>
             </div>
             <ChevronRight className="w-5 h-5 text-gray-400" />
