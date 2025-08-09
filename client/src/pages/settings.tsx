@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { MobileHeader } from "@/components/layout/mobile-header";
 import { Button } from "@/components/ui/button";
-import { useAuth } from "@/lib/auth";
+// import { useAuth } from "@/lib/auth";
 import { pushNotificationManager } from "@/lib/push-notifications";
 import { useToast } from "@/hooks/use-toast";
 import { Link } from "wouter";
@@ -18,9 +18,11 @@ import {
 } from "lucide-react";
 
 export default function Settings() {
-  const { user } = useAuth();
   const { toast } = useToast();
   const [notificationsEnabled, setNotificationsEnabled] = useState(false);
+  
+  // Temporarily disable auth until we fix the Firebase issue
+  const user = null;
 
   const handleEnableNotifications = async () => {
     try {
