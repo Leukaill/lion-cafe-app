@@ -92,25 +92,18 @@ export function MobileHeader({
       </div>
       
       {/* Expandable Search Bar */}
-      <div 
-        className="overflow-hidden transition-all duration-300 ease-in-out"
-        style={{
-          height: isSearchExpanded && showSearch ? '80px' : '0px',
-          opacity: isSearchExpanded && showSearch ? 1 : 0,
-          transform: isSearchExpanded && showSearch ? 'translateY(0)' : 'translateY(-10px)'
-        }}
-      >
-        <div className="px-4 pb-3 border-t border-gray-100 bg-white/95 backdrop-blur-lg">
+      {isSearchExpanded && showSearch && (
+        <div className="px-4 pb-3 border-t border-gray-100 bg-white/95 backdrop-blur-lg animate-in slide-in-from-top-2 duration-300">
           <input
             type="text"
             placeholder="Search menu..."
             value={searchQuery}
             onChange={(e) => handleSearchChange(e.target.value)}
-            className="w-full px-4 py-3 bg-gray-100 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-brand-orange focus:border-transparent transition-all duration-200"
-            autoFocus={isSearchExpanded}
+            className="w-full px-4 py-3 bg-gray-100 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-brand-orange focus:border-transparent"
+            autoFocus
           />
         </div>
-      </div>
+      )}
     </header>
   );
 }
