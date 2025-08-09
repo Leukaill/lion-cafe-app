@@ -5,6 +5,7 @@ import logoPath from "@assets/509248693_18059664560223974_3939236321042090081_n_
 import { GlassCard } from "@/components/ui/glass-card";
 import { Button } from "@/components/ui/button";
 import { MenuItemCard } from "@/components/menu/menu-item";
+import { MobileHeader } from "@/components/layout/mobile-header";
 import { useQuery } from "@tanstack/react-query";
 import { MenuItem } from "@shared/schema";
 import { pushNotificationManager } from "@/lib/push-notifications";
@@ -14,6 +15,7 @@ export default function Home() {
   const { toast } = useToast();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const announcements = [
     {
@@ -75,6 +77,13 @@ export default function Home() {
 
   return (
     <div className="pb-8">
+      <MobileHeader 
+        title="Lion's Café" 
+        showNotifications 
+        showSearch 
+        onSearchChange={setSearchQuery}
+      />
+      
       {/* Beautiful Announcements Section */}
       <section className="px-4 pt-6 pb-8">
         <div className="text-center mb-6">
