@@ -16,6 +16,7 @@ import Cart from "@/pages/cart";
 import Reservations from "@/pages/reservations";
 import Checkout from "@/pages/checkout";
 import Story from "@/pages/story";
+import Settings from "@/pages/settings";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -32,15 +33,13 @@ function Router() {
           <Route path="/reservations" component={Reservations} />
           <Route path="/checkout" component={Checkout} />
           <Route path="/story" component={Story} />
+          <Route path="/settings" component={Settings} />
 
           <Route component={NotFound} />
         </Switch>
       </div>
       
-      <MobileNavigation 
-        onAuthClick={() => setIsAuthModalOpen(true)}
-        onCartClick={() => setIsCartOpen(true)}
-      />
+      <MobileNavigation />
       
       {/* Global Components */}
       <ShoppingCart 
