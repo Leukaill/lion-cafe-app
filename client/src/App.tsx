@@ -5,8 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { AuthProvider } from "@/lib/auth";
 import { CartProvider } from "@/hooks/use-cart";
-import { Navigation } from "@/components/layout/navigation";
-import { Footer } from "@/components/layout/footer";
+import { MobileNavigation } from "@/components/layout/mobile-navigation";
 import { InstallPrompt } from "@/components/pwa/install-prompt";
 import { useState } from "react";
 import { ShoppingCart } from "@/components/cart/shopping-cart";
@@ -23,27 +22,27 @@ function Router() {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white">
-      <Navigation />
+    <div className="mobile-app bg-gray-900 text-white">
+      <div className="mobile-content">
+        <Switch>
+          <Route path="/" component={Home} />
+          <Route path="/menu" component={Menu} />
+          <Route path="/reservations" component={Reservations} />
+          <Route path="/checkout" component={Checkout} />
+          <Route path="/story" component={Story} />
+          <Route path="/auth" component={() => {
+            setIsAuthModalOpen(true);
+            return <Home />;
+          }} />
+          <Route path="/cart" component={() => {
+            setIsCartOpen(true);
+            return <Home />;
+          }} />
+          <Route component={NotFound} />
+        </Switch>
+      </div>
       
-      <Switch>
-        <Route path="/" component={Home} />
-        <Route path="/menu" component={Menu} />
-        <Route path="/reservations" component={Reservations} />
-        <Route path="/checkout" component={Checkout} />
-        <Route path="/story" component={Story} />
-        <Route path="/auth" component={() => {
-          setIsAuthModalOpen(true);
-          return <Home />;
-        }} />
-        <Route path="/cart" component={() => {
-          setIsCartOpen(true);
-          return <Home />;
-        }} />
-        <Route component={NotFound} />
-      </Switch>
-
-      <Footer />
+      <MobileNavigation />
       
       {/* Global Components */}
       <ShoppingCart 
