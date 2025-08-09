@@ -226,10 +226,13 @@ export default function Settings() {
         </div>
 
         {/* Settings Groups */}
-        <div className="space-y-8">
+        <div className="space-y-10">
           {settingsGroups.map((group, groupIndex) => (
-            <div key={groupIndex}>
-              <h2 className="text-lg font-semibold text-gray-900 mb-4 px-2">{group.title}</h2>
+            <div key={groupIndex} className="bg-gray-50 rounded-3xl p-6">
+              <div className="flex items-center mb-6">
+                <div className="w-1 h-6 bg-brand-orange rounded-full mr-3"></div>
+                <h2 className="text-xl font-bold text-gray-900">{group.title}</h2>
+              </div>
               <div className="space-y-3">
                 {group.items.map((item, index) => {
                   const IconComponent = item.icon;
