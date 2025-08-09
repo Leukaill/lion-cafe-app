@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { MobileHeader } from "@/components/layout/mobile-header";
 import { Button } from "@/components/ui/button";
-import { Switch } from "@/components/ui/switch";
 import { useAuth } from "@/lib/auth";
 import { pushNotificationManager } from "@/lib/push-notifications";
 import { useToast } from "@/hooks/use-toast";
+import { Link } from "wouter";
 import { 
   Bell, 
   User, 
@@ -12,7 +12,9 @@ import {
   ChevronRight, 
   LogOut, 
   Settings as SettingsIcon,
-  TestTube
+  TestTube,
+  ToggleLeft,
+  ToggleRight
 } from "lucide-react";
 
 export default function Settings() {
@@ -66,7 +68,7 @@ export default function Settings() {
       icon: Bell,
       title: "Enable Notifications",
       description: "Get special offers & updates",
-      action: "toggle",
+      type: "toggle" as const,
       enabled: notificationsEnabled,
       onToggle: handleEnableNotifications
     },
@@ -74,21 +76,21 @@ export default function Settings() {
       icon: TestTube,
       title: "Demo Notification",
       description: "Test push notifications",
-      action: "button",
+      type: "button" as const,
       onPress: handleDemoNotification
     },
     {
       icon: User,
       title: "My Account",
       description: "Login or sign up",
-      action: "button",
+      type: "button" as const,
       onPress: () => toast({ title: "Account", description: "Login feature coming soon!" })
     },
     {
       icon: Coffee,
       title: "Our Story",
       description: "About Lion's Café",
-      action: "navigate",
+      type: "navigate" as const,
       href: "/story"
     }
   ];
@@ -109,45 +111,73 @@ export default function Settings() {
 
         {/* Settings List */}
         <div className="space-y-3 mb-8">
-          {settingsItems.map((item, index) => (
-            <div key={index} className="glass-morphism-dark p-4 rounded-2xl">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center space-x-4 flex-1">
-                  <div className="w-12 h-12 bg-brand-orange/10 rounded-full flex items-center justify-center">
-                    <item.icon className="w-6 h-6 text-brand-orange" />
+          {settingsItems.map((item, index) => {
+            const IconComponent = item.icon;
+            
+            if (item.type === "navigate") {
+              return (
+                <Link key={index} href={item.href!}>
+                  <div className="glass-morphism-dark p-4 rounded-2xl touch-feedback">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center space-x-4 flex-1">
+                        <div className="w-12 h-12 bg-brand-orange/10 rounded-full flex items-center justify-center">
+                          <IconComponent className="w-6 h-6 text-brand-orange" />
+                        </div>
+                        
+                        <div className="flex-1 min-w-0">
+                          <h3 className="font-semibold text-gray-900 mb-1">{item.title}</h3>
+                          <p className="text-sm text-gray-600">{item.description}</p>
+                        </div>
+                      </div>
+                      
+                      <ChevronRight className="w-5 h-5 text-gray-400 ml-4" />
+                    </div>
                   </div>
-                  
-                  <div className="flex-1 min-w-0">
-                    <h3 className="font-semibold text-gray-900 mb-1">{item.title}</h3>
-                    <p className="text-sm text-gray-600">{item.description}</p>
+                </Link>
+              );
+            }
+            
+            return (
+              <div key={index} className="glass-morphism-dark p-4 rounded-2xl">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-4 flex-1">
+                    <div className="w-12 h-12 bg-brand-orange/10 rounded-full flex items-center justify-center">
+                      <IconComponent className="w-6 h-6 text-brand-orange" />
+                    </div>
+                    
+                    <div className="flex-1 min-w-0">
+                      <h3 className="font-semibold text-gray-900 mb-1">{item.title}</h3>
+                      <p className="text-sm text-gray-600">{item.description}</p>
+                    </div>
                   </div>
+
+                  {item.type === "toggle" && (
+                    <button
+                      onClick={() => item.onToggle?.()}
+                      className="ml-4 p-1 touch-feedback"
+                    >
+                      {item.enabled ? (
+                        <ToggleRight className="w-8 h-8 text-brand-orange" />
+                      ) : (
+                        <ToggleLeft className="w-8 h-8 text-gray-400" />
+                      )}
+                    </button>
+                  )}
+
+                  {item.type === "button" && (
+                    <Button
+                      onClick={item.onPress}
+                      variant="outline"
+                      size="sm"
+                      className="ml-4"
+                    >
+                      Test
+                    </Button>
+                  )}
                 </div>
-
-                {item.action === "toggle" && (
-                  <Switch
-                    checked={item.enabled}
-                    onCheckedChange={() => item.onToggle?.()}
-                    className="ml-4"
-                  />
-                )}
-
-                {item.action === "button" && (
-                  <Button
-                    onClick={item.onPress}
-                    variant="outline"
-                    size="sm"
-                    className="ml-4"
-                  >
-                    Test
-                  </Button>
-                )}
-
-                {item.action === "navigate" && (
-                  <ChevronRight className="w-5 h-5 text-gray-400 ml-4" />
-                )}
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* Account Actions */}
