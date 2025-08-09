@@ -22,8 +22,8 @@ function Router() {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
 
   return (
-    <div className="mobile-app bg-gray-900 text-white">
-      <div className="mobile-content">
+    <div className="mobile-app bg-white text-gray-900">
+      <div className="mobile-content px-4 pt-4">
         <Switch>
           <Route path="/" component={Home} />
           <Route path="/menu" component={Menu} />

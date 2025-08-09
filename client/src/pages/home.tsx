@@ -86,16 +86,16 @@ export default function Home() {
           <Link href="/menu">
             <div className="glass-morphism-dark p-4 rounded-2xl text-center touch-feedback">
               <Utensils className="w-8 h-8 text-brand-orange mb-3 mx-auto" />
-              <h3 className="font-semibold text-white mb-1">Order Now</h3>
-              <p className="text-xs text-gray-400">Browse menu</p>
+              <h3 className="font-semibold text-gray-900 mb-1">Order Now</h3>
+              <p className="text-xs text-gray-600">Browse menu</p>
             </div>
           </Link>
           
           <Link href="/reservations">
             <div className="glass-morphism-dark p-4 rounded-2xl text-center touch-feedback">
               <Calendar className="w-8 h-8 text-brand-orange mb-3 mx-auto" />
-              <h3 className="font-semibold text-white mb-1">Reserve</h3>
-              <p className="text-xs text-gray-400">Book table</p>
+              <h3 className="font-semibold text-gray-900 mb-1">Reserve</h3>
+              <p className="text-xs text-gray-600">Book table</p>
             </div>
           </Link>
         </div>
@@ -106,11 +106,11 @@ export default function Home() {
             <div className="flex items-center space-x-3">
               <Bell className="w-6 h-6 text-brand-orange" />
               <div>
-                <h3 className="font-medium text-white">Enable Notifications</h3>
-                <p className="text-xs text-gray-400">Get special offers & updates</p>
+                <h3 className="font-medium text-gray-900">Enable Notifications</h3>
+                <p className="text-xs text-gray-600">Get special offers & updates</p>
               </div>
             </div>
-            <ChevronRight className="w-5 h-5 text-gray-400" />
+            <ChevronRight className="w-5 h-5 text-gray-600" />
           </div>
 
           {/* Demo Notification Button */}
@@ -119,13 +119,13 @@ export default function Home() {
             onClick={() => pushNotificationManager.simulateOrderNotification()}
           >
             <div className="flex items-center space-x-3">
-              <Bell className="w-6 h-6 text-blue-400" />
+              <Bell className="w-6 h-6 text-blue-500" />
               <div>
-                <h3 className="font-medium text-white">Demo Notification</h3>
-                <p className="text-xs text-gray-400">Test push notifications</p>
+                <h3 className="font-medium text-gray-900">Demo Notification</h3>
+                <p className="text-xs text-gray-600">Test push notifications</p>
               </div>
             </div>
-            <ChevronRight className="w-5 h-5 text-gray-400" />
+            <ChevronRight className="w-5 h-5 text-gray-600" />
           </div>
 
           <Link href="/auth">
@@ -133,11 +133,11 @@ export default function Home() {
               <div className="flex items-center space-x-3">
                 <UserIcon className="w-6 h-6 text-brand-orange" />
                 <div>
-                  <h3 className="font-medium text-white">My Account</h3>
-                  <p className="text-xs text-gray-400">Login or sign up</p>
+                  <h3 className="font-medium text-gray-900">My Account</h3>
+                  <p className="text-xs text-gray-600">Login or sign up</p>
                 </div>
               </div>
-              <ChevronRight className="w-5 h-5 text-gray-400" />
+              <ChevronRight className="w-5 h-5 text-gray-600" />
             </div>
           </Link>
 
@@ -146,11 +146,11 @@ export default function Home() {
               <div className="flex items-center space-x-3">
                 <Store className="w-6 h-6 text-brand-orange" />
                 <div>
-                  <h3 className="font-medium text-white">Our Story</h3>
-                  <p className="text-xs text-gray-400">About Lion's Café</p>
+                  <h3 className="font-medium text-gray-900">Our Story</h3>
+                  <p className="text-xs text-gray-600">About Lion's Café</p>
                 </div>
               </div>
-              <ChevronRight className="w-5 h-5 text-gray-400" />
+              <ChevronRight className="w-5 h-5 text-gray-600" />
             </div>
           </Link>
         </div>
@@ -159,7 +159,7 @@ export default function Home() {
       {/* Featured Items */}
       <section className="px-4 py-6">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-xl font-bold text-white">Popular Items</h2>
+          <h2 className="text-xl font-bold text-gray-900">Popular Items</h2>
           <Link href="/menu">
             <button className="text-brand-orange text-sm font-medium flex items-center">
               View All

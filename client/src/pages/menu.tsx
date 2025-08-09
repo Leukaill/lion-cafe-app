@@ -50,13 +50,13 @@ export default function Menu() {
       
       <div className="px-4 pb-4">
         {/* Search Bar */}
-        <div className="sticky top-16 z-30 py-4 bg-gray-900">
+        <div className="sticky top-16 z-30 py-4 bg-white">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
             <input
               type="text"
               placeholder="Search menu..."
-              className="w-full bg-gray-800 border border-gray-700 rounded-xl pl-10 pr-4 py-3 text-white placeholder-gray-400 focus:border-brand-orange focus:outline-none"
+              className="w-full bg-white border border-gray-300 rounded-xl pl-10 pr-4 py-3 text-gray-900 placeholder-gray-500 focus:border-brand-orange focus:outline-none shadow-sm"
             />
           </div>
         </div>
@@ -70,7 +70,7 @@ export default function Menu() {
               className={`flex-shrink-0 px-6 py-2 rounded-full font-medium transition-all touch-feedback ${
                 activeCategory === category.id
                   ? "bg-brand-orange text-white"
-                  : "bg-gray-800 text-gray-300 border border-gray-700 hover:bg-gray-700"
+                  : "bg-white text-gray-700 border border-gray-300 hover:bg-gray-50 shadow-sm"
               }`}
             >
               {category.name}
