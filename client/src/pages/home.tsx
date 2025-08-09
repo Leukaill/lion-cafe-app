@@ -87,11 +87,11 @@ export default function Home() {
       {/* Beautiful Announcements Section */}
       <section className="px-4 pt-6 pb-8">
         <div className="text-center mb-6">
-          <div className="w-20 h-20 mx-auto mb-4 bg-gradient-to-br from-brand-orange to-orange-600 rounded-2xl flex items-center justify-center shadow-lg">
+          <div className="w-20 h-20 mx-auto mb-4">
             <img 
               src={logoPath} 
               alt="Lion's Café & Bakery Logo" 
-              className="w-12 h-12 rounded-xl object-cover"
+              className="w-full h-full rounded-2xl object-cover shadow-lg"
             />
           </div>
           

@@ -17,6 +17,7 @@ import Reservations from "@/pages/reservations";
 import Checkout from "@/pages/checkout";
 import Story from "@/pages/story";
 import Settings from "@/pages/settings";
+import Contact from "@/pages/contact";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -34,6 +35,7 @@ function Router() {
           <Route path="/checkout" component={Checkout} />
           <Route path="/story" component={Story} />
           <Route path="/settings" component={Settings} />
+          <Route path="/contact" component={Contact} />
 
           <Route component={NotFound} />
         </Switch>
