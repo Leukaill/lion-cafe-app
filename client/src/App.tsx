@@ -12,6 +12,7 @@ import { ShoppingCart } from "@/components/cart/shopping-cart";
 import { AuthModal } from "@/components/auth/auth-modal";
 import Home from "@/pages/home";
 import Menu from "@/pages/menu";
+import Cart from "@/pages/cart";
 import Reservations from "@/pages/reservations";
 import Checkout from "@/pages/checkout";
 import Story from "@/pages/story";
@@ -27,26 +28,19 @@ function Router() {
         <Switch>
           <Route path="/" component={Home} />
           <Route path="/menu" component={Menu} />
+          <Route path="/cart" component={Cart} />
           <Route path="/reservations" component={Reservations} />
           <Route path="/checkout" component={Checkout} />
           <Route path="/story" component={Story} />
-          <Route path="/auth">
-            {() => {
-              setIsAuthModalOpen(true);
-              return <Home />;
-            }}
-          </Route>
-          <Route path="/cart">
-            {() => {
-              setIsCartOpen(true);
-              return <Home />;
-            }}
-          </Route>
+
           <Route component={NotFound} />
         </Switch>
       </div>
       
-      <MobileNavigation />
+      <MobileNavigation 
+        onAuthClick={() => setIsAuthModalOpen(true)}
+        onCartClick={() => setIsCartOpen(true)}
+      />
       
       {/* Global Components */}
       <ShoppingCart 
