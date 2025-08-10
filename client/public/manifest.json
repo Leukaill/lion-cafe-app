@@ -3,23 +3,29 @@
   "short_name": "Lion's Café",
   "description": "Premium artisan bakery and coffee experience - Pride of Peace of Mind",
   "theme_color": "#D2461A",
-  "background_color": "#1a1a1a",
+  "background_color": "#ffffff",
   "display": "standalone",
   "orientation": "portrait",
   "scope": "/",
   "start_url": "/",
   "icons": [
     {
-      "src": "/attached_assets/509248693_18059664560223974_3939236321042090081_n_1754404764662_1754647863336.jpg",
+      "src": "/icon-192.svg",
       "sizes": "192x192",
-      "type": "image/jpeg",
-      "purpose": "any maskable"
+      "type": "image/svg+xml",
+      "purpose": "any"
     },
     {
-      "src": "/attached_assets/509248693_18059664560223974_3939236321042090081_n_1754404764662_1754647863336.jpg",
+      "src": "/icon-512.svg",
       "sizes": "512x512",
-      "type": "image/jpeg",
-      "purpose": "any maskable"
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/apple-touch-icon.svg",
+      "sizes": "180x180",
+      "type": "image/svg+xml",
+      "purpose": "any"
     }
   ],
   "categories": ["food", "shopping"],

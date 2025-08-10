@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="192" height="192" viewBox="0 0 192 192" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Circle -->
+  <circle cx="96" cy="96" r="96" fill="#D2461A"/>
+  
+  <!-- Coffee Cup -->
+  <g transform="translate(48, 48)">
+    <!-- Cup Body -->
+    <path d="M20 24H76C82.627 24 88 29.373 88 36V80C88 86.627 82.627 92 76 92H20C13.373 92 8 86.627 8 80V36C8 29.373 13.373 24 20 24Z" fill="white"/>
+    
+    <!-- Handle -->
+    <path d="M88 44C93.523 44 98 48.477 98 54V62C98 67.523 93.523 72 88 72" stroke="white" stroke-width="4" fill="none"/>
+    
+    <!-- Coffee Surface -->
+    <ellipse cx="48" cy="32" rx="32" ry="4" fill="#8B4513"/>
+    
+    <!-- Steam Lines -->
+    <path d="M36 16C36 16 38 8 40 12C42 8 44 16 44 16" stroke="white" stroke-width="2" stroke-linecap="round"/>
+    <path d="M48 16C48 16 50 8 52 12C54 8 56 16 56 16" stroke="white" stroke-width="2" stroke-linecap="round"/>
+    <path d="M60 16C60 16 62 8 64 12C66 8 68 16 68 16" stroke="white" stroke-width="2" stroke-linecap="round"/>
+  </g>
+</svg>
