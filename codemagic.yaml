@@ -8,6 +8,7 @@ workflows:
       vars:
         PACKAGE_NAME: "com.lionscafe.app"
       node: 20
+      java: 17
     scripts:
       - name: Install dependencies
         script: |
