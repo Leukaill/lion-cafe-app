@@ -1,0 +1,68 @@
+{
+  "name": "Lion's Café & Bakery",
+  "short_name": "Lion's Café",
+  "description": "Premium artisan bakery and coffee experience - Pride of Peace of Mind",
+  "theme_color": "#D2461A",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "orientation": "portrait",
+  "scope": "/",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "/attached_assets/509248693_18059664560223974_3939236321042090081_n_1754404764662_1754647863336.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/attached_assets/509248693_18059664560223974_3939236321042090081_n_1754404764662_1754647863336.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/attached_assets/509248693_18059664560223974_3939236321042090081_n_1754404764662_1754647863336.jpg",
+      "sizes": "180x180",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["food", "shopping"],
+  "screenshots": [
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 800'%3E%3Crect width='400' height='800' fill='%23111827'/%3E%3Ctext x='200' y='400' text-anchor='middle' font-size='24' fill='white'%3ELion's Café%3C/text%3E%3C/svg%3E",
+      "sizes": "400x800",
+      "type": "image/svg+xml",
+      "form_factor": "narrow"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Menu",
+      "short_name": "Menu",
+      "description": "Browse our artisan menu",
+      "url": "/menu",
+      "icons": [
+        {
+          "src": "/attached_assets/509248693_18059664560223974_3939236321042090081_n_1754404764662_1754647863336.jpg",
+          "sizes": "96x96",
+          "type": "image/jpeg"
+        }
+      ]
+    },
+    {
+      "name": "Reservations",
+      "short_name": "Book",
+      "description": "Reserve your table",
+      "url": "/reservations",
+      "icons": [
+        {
+          "src": "/attached_assets/509248693_18059664560223974_3939236321042090081_n_1754404764662_1754647863336.jpg",
+          "sizes": "96x96",
+          "type": "image/jpeg"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+import type { CapacitorConfig } from '@capacitor/cli';
+
+const config: CapacitorConfig = {
+  appId: 'com.lionscafe.app',
+  appName: "Lion's Café & Bakery",
+  webDir: 'dist/public',
+  server: {
+    androidScheme: 'https'
+  },
+  plugins: {
+    SplashScreen: {
+      launchShowDuration: 2000,
+      backgroundColor: "#D2461A",
+      androidSplashResourceName: "splash",
+      androidScaleType: "CENTER_CROP",
+      showSpinner: false
+    },
+    StatusBar: {
+      style: "LIGHT",
+      backgroundColor: "#D2461A"
+    },
+    PushNotifications: {
+      presentationOptions: ["badge", "sound", "alert"]
+    }
+  }
+};
+
+export default config;
