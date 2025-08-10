@@ -5,6 +5,7 @@ Lion's Café & Bakery is a full-stack Progressive Web Application (PWA) for an a
 # User Preferences
 
 Preferred communication style: Simple, everyday language.
+Project Migration: Successfully migrated from Replit Agent to Replit environment (August 10, 2025)
 Design preferences: 
 - White background with detached components
 - iOS-style floating navigation with rounded corners (24px border-radius)
